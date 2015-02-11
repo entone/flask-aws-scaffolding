@@ -1,6 +1,7 @@
 #cloud-config
 output : { all : '| tee -a /var/log/cloud-init-output.log' }
 
+#this is the ssh key to clone the github repo
 ssh_keys:
     rsa_private: |
         Private key here
@@ -14,14 +15,20 @@ packages:
     - nginx
 
 runcmd:
+    #adds ssh key to ssh config
     - sed -i -e '$a    IdentityFile /etc/ssh/ssh_host_rsa_key' /etc/ssh/ssh_config
     - restart ssh
+    #install docker
     - curl -sSL https://get.docker.com/ubuntu/ | sudo sh
     - pip install fig
+    #pre-populate known hosts to avoid confirmation dialog
     - ssh-keyscan github.com >> /root/.ssh/known_hosts
+    #clone app into /app
     - git clone git@github.com:entone/flask-aws-scaffolding.git /app
     - cd /app
+    #configure nginx, see config/nginx
     - cp ./config/nginx /etc/nginx/sites-enabled/app
     - rm /etc/nginx/sites-enabled/default
     - service nginx restart
+    #fire up docker containers, see fig.yml for setup
     - fig up -d

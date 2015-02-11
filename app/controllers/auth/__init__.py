@@ -11,7 +11,7 @@ auth = Blueprint(
     'auth',
     __name__,
     template_folder=config.TEMPLATES,
-    subdomain=config.AUTH_SUBDOMAIN,
+    url_prefix="/auth",
 )
 
 class AuthLogin(MethodView):
