@@ -57,3 +57,4 @@ target/
 terraform/terraform.tfvars
 terraform/devops.pem
 terraform/.ssh
+terraform/.terraform

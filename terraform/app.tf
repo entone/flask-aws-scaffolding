@@ -45,7 +45,7 @@ resource "aws_elb" "web" {
 
 resource "aws_instance" "app" {
     ami = "${lookup(var.amis, var.aws_region)}"
-    instance_type = "t2.medium"
+    instance_type = "m3.large"
     key_name = "devops"
     subnet_id = "${module.vpc.aws_subnet_app_id}"
     connection {

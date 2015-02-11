@@ -13,3 +13,5 @@ pip install -r requirements.txt
 to run app cd to base directory run `gunicorn -c /path/to/gunicorn.conf wsgi:app --reload`
 
 see the nginx config file to setup nginx proxy and serve static resources
+
+before deployment be sure to add your domain name for the SERVER_NAME env variable

@@ -13,6 +13,6 @@ server {
     }
 
     location /static {
-        alias /home/entone/dev/flask-aws-scaffolding/app/views/static;
+        alias /app/app/views/static;
     }
 }

@@ -3,35 +3,9 @@ output : { all : '| tee -a /var/log/cloud-init-output.log' }
 
 ssh_keys:
     rsa_private: |
-        -----BEGIN RSA PRIVATE KEY-----
-        MIIEpQIBAAKCAQEAxu4AMnzOPRyWLzi0x+7PUJFCSW5avK9S8dHq6yBEMwsxrUK+
-        bJtqOvl5KnIHHmhjDPPgYAcTgjK9R/moQSzzIUE4nQ1Zn1ytZ7RxXPVMIIRszAfq
-        CgMxJbcDvoU645QzjoRX64A8kd/eGNgsLbl092HtKZzAlRKfrWElAYFQ/7VA2Xee
-        WznShNSV9bAsblz/7QjCfE6UkGs2wEBipTHm+Cxj0yvvrgdKcpDHOKUX1fFncXWc
-        tzV3NWtVQAPUbAePA9Sw5a23BhwMby3llXUPlWW+ClrJVMvCahA7TpbiZSfCkGeW
-        na1iVCVQMu6G80y498E5LFPtlP6BLwQtqRTQVQIDAQABAoIBAGGU1hvuBO0NXM6F
-        Loj0qFWJK88BhxkPl8xvgKEeDtZLI28uUmLMSevr/HfJv5w28H+mEeaJEhTH9vmb
-        ieGOvyUM7Ux9A/2cZKN+bC2BVnqM+yGKsE+BCVbK09ddW2nPhQrf+JDZMt0Lx9LA
-        F8vGMY44RzImZoG5xQIzqQd3+9eyn47HKF28/cgDXle5c0qwa9mGr+Zy6zEnomVe
-        3HZNw+IjvB075YwAEmj5xtY8bjx8vUTRGAZjSAw/f7nwQTWH2AbSPoOX0o2ls+8r
-        Z3z/O+w1AqcOdbRA3Fb/tjdfsPvOw58Y0ILYSSqjyIFSKvwZsaSbaYVCBsja9kTp
-        5xCpePECgYEA9am5ZgHNmO3angzJzpmCshNTB4FUkz7H6jN/ssJ1YFOeBVGokXJr
-        oorBF1Ph03Bd4iGU+fTd2kIjxtBApe3wFHh8I5BJVussgR4CzJZ7FaGMpLuHTua8
-        CHIQIZ2+RcnzXWhSRVPPK2ho0zlIFUX5keNpvmYPEhE9sV7/1Lx6WYMCgYEAz0zd
-        20zs+jHmEtUe+gEI4mVU81m/aj21G7Yu2dOOi4yCqUnNf74gnyM/NG64+ZlwyY9X
-        T+oZk5bg5TlDPHYvEbIn/3qb+R0hqvCYplK6MzI9caKGrOUTEPWkk/LcjwJYfSB3
-        jegrZLvKWdU4pTp9kQj2P44Vnp8JeYZO+nXqf0cCgYEAzvXJx3JFb00THIvRiEgz
-        nypAjNYcFmCRs3DnaAYDNL+9JOYCiWZH34vd2HVGjwbfUR7RjzMHpFSMJ3ZSwHeQ
-        Bu7qRlvMLXm66JwL56fu0e5junRyLbqdNtBBXtCx98GHUW4NwXI12m//v9NGMwXc
-        l1drQohgsevseX17MhIHUVkCgYEAu6d7lg+W3g3ZleazOeFB55+PPRNbQZNGpSVQ
-        WAM4oH67sP+MNT0pTqWbi51HeTs7bFqD0WW7bW1BfH9PrCXYCg7aQlz9YI7McW+G
-        39k3kSzDjmBvxYdAsTOMnhlVK2gWLn77esxWq8OLM7LeqkO+c1JHh9TZIVQaQZYh
-        XHztn/UCgYEA6SXlP+pw1TWlVpssDhWlag0jFXkdhT+dPIBvL3N38JuLWBtrXxQL
-        1WIhM+GQ7HEGVTdbidk2LPbV6mRnNjU2FwsazsDv4QxzJqaXYsg4ZrM4EyjBmq7u
-        0rOTk1F0JPlpLlruvSWhfIBQLGTcg8vOD2NvNPCsXmQjOMq/91PNMvE=
-        -----END RSA PRIVATE KEY-----
+        Private key here
 
-    rsa_public: ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQDG7gAyfM49HJYvOLTH7s9QkUJJblq8r1Lx0errIEQzCzGtQr5sm2o6+XkqcgceaGMM8+BgBxOCMr1H+ahBLPMhQTidDVmfXK1ntHFc9UwghGzMB+oKAzEltwO+hTrjlDOOhFfrgDyR394Y2CwtuXT3Ye0pnMCVEp+tYSUBgVD/tUDZd55bOdKE1JX1sCxuXP/tCMJ8TpSQazbAQGKlMeb4LGPTK++uB0pykMc4pRfV8WdxdZy3NXc1a1VAA9RsB48D1LDlrbcGHAxvLeWVdQ+VZb4KWslUy8JqEDtOluJlJ8KQZ5adrWJUJVAy7obzTLj3wTksU+2U/oEvBC2pFNBV entone@beagsley
+    rsa_public: public key here
 
 
 packages:
@@ -47,4 +21,7 @@ runcmd:
     - ssh-keyscan github.com >> /root/.ssh/known_hosts
     - git clone git@github.com:entone/flask-aws-scaffolding.git /app
     - cd /app
+    - cp ./config/nginx /etc/nginx/sites-enabled/app
+    - rm /etc/nginx/sites-enabled/default
+    - service nginx restart
     - fig up -d
