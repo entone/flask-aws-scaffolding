@@ -150,7 +150,9 @@ class App(Flask):
         from controllers.dashboard import dashboard
         from controllers.auth import auth
         from controllers.auth.facebook import facebook
+        from controllers.healthcheck import hc
         dashboard.before_request(self.user_logged_in)
         self.register_blueprint(dashboard)
         self.register_blueprint(auth)
         self.register_blueprint(facebook)
+        self.register_blueprint(hc)
