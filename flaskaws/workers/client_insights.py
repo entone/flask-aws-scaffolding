@@ -1,7 +1,7 @@
-from app.app import App
-from app import config
-from app import INFLUX
-from capuchin.insights import INSIGHTS
+from flaskaws.app import App
+from flaskaws import config
+from flaskaws import db
+from flaskaws.insights import INSIGHTS
 from flask_oauth import OAuth
 import urlparse
 import logging
@@ -28,6 +28,7 @@ class ClientInsights():
         )
         self.fb_app.tokengetter(self.get_token)
         self.get_insights()
+        self.INFLUX = db.init_influxdb()
 
     def get_token(self):
         return (self.client.facebook_page.token, config.FACEBOOK_APP_SECRET)
@@ -87,7 +88,7 @@ class ClientInsights():
         ]
         logging.info("Writing: {}".format(data))
         try:
-            res = INFLUX.write_points(data)
+            res = self.INFLUX.write_points(data)
             logging.info(res)
         except Exception as e:
             logging.warning(e)

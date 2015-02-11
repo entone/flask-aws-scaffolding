@@ -1,10 +1,11 @@
-from app.app import INFLUX
+from flaskaws import db
 import logging
 
 class Event(object):
 
     def __init__(self, client, event, **kwargs):
         super(Event, self).__init__()
+        INFLUX = db.init_influxdb()
         columns = ["type"]
         values = [event]
         for k,v in kwargs.iteritems():

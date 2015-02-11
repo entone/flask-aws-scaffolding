@@ -1,6 +1,6 @@
 import humongolus as orm
 import humongolus.field as field
-from app.util import password
+from flaskaws.util import password
 
 class PageCategory(orm.EmbeddedDocument):
     id = field.Char()
@@ -29,7 +29,7 @@ class SocialAccount(orm.EmbeddedDocument):
     permissions = orm.List(type=unicode)
 
 class Client(orm.Document):
-    _db = "app"
+    _db = "flaskaws"
     _collection = "clients"
 
     _indexes = [
@@ -41,7 +41,7 @@ class Client(orm.Document):
     facebook_page = FacebookPage()
 
 class Admin(orm.Document):
-    _db = "app"
+    _db = "flaskaws"
     _collection = "client_admins"
     _indexes = [
         orm.Index('email', key=('email', 1), unique=True),

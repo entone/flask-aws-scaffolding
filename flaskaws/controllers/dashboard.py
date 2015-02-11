@@ -1,6 +1,6 @@
 from flask import Blueprint, Response, render_template
 from flask.views import MethodView
-from app import config
+from flaskaws import config
 import logging
 
 dashboard = Blueprint(

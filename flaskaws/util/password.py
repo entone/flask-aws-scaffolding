@@ -1,6 +1,5 @@
 import passlib.hash
-
-from app import config
+from flaskaws import config
 
 
 lib = passlib.hash.__getattr__(config.HASH_ALGO_CLS)

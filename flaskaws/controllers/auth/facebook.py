@@ -1,8 +1,8 @@
 from flask import Blueprint, render_template, request, redirect, url_for, Response
 from flask.views import MethodView
 from flask.ext.login import login_required, current_user
-from app import config
-from app.models.client import SocialAccount, FacebookPage, PageCategory
+from flaskaws import config
+from flaskaws.models.client import SocialAccount, FacebookPage, PageCategory
 from flask_oauth import OAuth
 import logging
 from urlparse import parse_qs, urlparse
@@ -14,8 +14,7 @@ facebook = Blueprint(
     "facebook",
     __name__,
     template_folder=config.TEMPLATES,
-    url_prefix="/facebook",
-    subdomain=config.AUTH_SUBDOMAIN,
+    url_prefix="/auth/facebook",
 )
 
 fb_app = oauth.remote_app(

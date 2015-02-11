@@ -38,7 +38,7 @@ LOGGER_NAME = "app"
 JSON_AS_ASCII = False
 
 
-TEMPLATES = "{}/app/views/templates".format(os.getcwd())
+TEMPLATES = "{}/flaskaws/views/templates".format(os.getcwd())
 
 MONGO_HOST = "mongo"
 MONGO_PORT = 27017
