@@ -1,0 +1,45 @@
+mongodb:
+    image: dockerfile/mongodb
+    expose:
+        - "27017"
+
+elasticsearch:
+    image: dockerfile/elasticsearch
+    command: /elasticsearch/bin/elasticsearch -Des.config=/config/elasticsearch.yml
+    expose:
+        - "9200"
+        - "9300"
+    volumes:
+        - /var/lib/elasticsearch:/es/data
+        - /var/log/elasticsearch:/log
+        - ./config:/config
+
+influxdb:
+    image: tutum/influxdb
+    expose:
+        - "8086"
+        - "8083"
+
+web:
+    build: .
+    command: gunicorn -c /config/gunicorn.conf wsgi:app --reload
+    volumes:
+        - .:/app
+        - ./config:/config
+    links:
+        - mongodb:mongo
+        - elasticsearch:es
+        - influxdb:influx
+    ports:
+        - "8000:8000"
+
+
+
+#worker:
+#    build: .
+#    command: python manage.py sync
+#    volumes:
+#        - .:/app
+#    links:
+#        - mongodb:mongo
+#        - elasticsearch:es

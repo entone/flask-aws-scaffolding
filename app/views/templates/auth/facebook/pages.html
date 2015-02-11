@@ -1,0 +1,24 @@
+<h2>Select the page you want to manage</h2>
+<div class="list-group">
+{% for p in current_user.facebook_pages %}
+    <a href="#" class="list-group-item page {% if p.id == current_user.client.facebook_page.id %}active{% endif %}" data-id="{{p.id}}">
+        {{p.name}}
+    </a>
+{% endfor %}
+</div>
+<p><a class="btn btn-primary btn-lg" href="{{ url_for('dashboard.index') }}" role="button">Done</a></p>
+
+<script>
+    $(document).ready(function(){
+        $(".page").click(function(e){
+            console.log(e);
+            $(".page").removeClass("active");
+            $(this).addClass("active");
+            $.ajax({
+                url:"{{ url_for('.save_page')}}",
+                data:{id:$(this).data("id")},
+                type:"POST"
+            })
+        })
+    })
+</script>

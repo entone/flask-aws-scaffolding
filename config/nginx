@@ -1,0 +1,18 @@
+server {
+    listen 0.0.0.0:80;
+
+    location / {
+        add_header 'Access-Control-Allow-Credentials' 'true';
+        add_header 'Access-Control-Allow-Headers' 'Content-Type,Accept,X-Requested-With';
+        add_header 'Access-Control-Allow-Methods' 'GET, POST, OPTIONS, PUT, DELETE';
+        add_header "Access-Control-Allow-Origin" $http_origin;
+        proxy_set_header X-Real-IP $remote_addr;
+        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+        proxy_set_header Host $http_host;
+        proxy_pass http://127.0.0.1:8000;
+    }
+
+    location /static {
+        alias /home/entone/dev/flask-aws-scaffolding/app/views/static;
+    }
+}

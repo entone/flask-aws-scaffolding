@@ -1,0 +1,10 @@
+{% extends "base.html" %}
+
+{% block title %}Dashboard{% endblock %}
+
+{% block content %}
+<div class="jumbotron">
+    <h1>Welcome {{current_user.client.name}}</h1>
+    <p>This is a basic flask app</p>
+</div>
+{% endblock %}

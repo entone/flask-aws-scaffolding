@@ -1,0 +1,11 @@
+{% extends "base.html" %}
+{% block title %}Connect Facebook{% endblock %}
+{% block content %}
+    {% if current_user.facebook_pages and not current_user.client.facebook_page.id %}
+        {% include "auth/facebook/pages.html" %}
+    {% elif current_user.client.facebook_page.id %}
+    {% include "auth/facebook/page.html" %}
+    {% else %}
+        {% include "auth/facebook/auth.html" %}
+    {% endif %}
+{% endblock %}

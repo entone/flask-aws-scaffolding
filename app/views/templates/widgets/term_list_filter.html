@@ -1,0 +1,57 @@
+<div id="term_list{{filter['field']|string|slugify}}"></div>
+<div class="row">
+    <ul class="list-group">
+    {% for l in lists[filter['display']]['buckets'] %}
+        <li class="list-group-item">
+            <label>
+                <input class="term-list-{{filter['field']|string|slugify}}" type="checkbox" data-field="{{filter['field']}}" value="{{l['key']}}" {% if l['key'] in values[filter['field'].replace(".", "___")] %}checked{% endif %}/>
+                {{l['key']}}
+            </label>
+        </li>
+    {% endfor %}
+    </ul>
+</div>
+<script>
+
+
+
+
+    function filter_exists_{{filter['field']|string|slugify}}(val){
+        console.log("Exists");
+        var field = "{{filter['field']}}";
+        for(var f in filters[field]){
+            console.log(filters[field][f]);
+            if(filters[field][f] == val) return true
+        }
+        return false;
+    };
+
+    function filter_remove_{{filter['field']|string|slugify}}(val){
+        var field = "{{filter['field']}}";
+        for(var f in filters[field]){
+            if(filters[field][f] == val){
+                var i = filters[field].indexOf(val);
+                filters[field].splice(i, 1);
+            }
+        }
+    };
+
+    $(".term-list-{{filter['field']|string|slugify}}").click(function(){
+        if($(this).is(":checked")){
+            if(filters["{{filter['field']}}"]){
+                if(!filter_exists_{{filter['field']}}($(this).val())){
+                    console.log("Adding: "+$(this).val());
+                    filters["{{filter['field']}}"].push($(this).val());
+                }
+            }else{
+                console.log("New: "+$(this).val());
+                filters["{{filter['field']}}"] = [$(this).val()];
+            }
+        }else{
+            console.log("Removing: "+$(this).val());
+            filter_remove_{{filter['field']}}($(this).val());
+        }
+        console.log(filters);
+    });
+
+</script>
