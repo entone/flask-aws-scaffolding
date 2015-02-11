@@ -45,6 +45,6 @@ runcmd:
     - curl -sSL https://get.docker.com/ubuntu/ | sudo sh
     - pip install fig
     - ssh-keyscan github.com >> /root/.ssh/known_hosts
-    - git clone git@github.com:edgeflip/capuchin.git /app
+    - git clone git@github.com:entone/flask-aws-scaffolding.git /app
     - cd /app
     - fig up -d

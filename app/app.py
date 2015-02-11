@@ -110,7 +110,7 @@ class App(Flask):
 
     def init_session(self):
         self.config['SESSION_MONGODB'] = MONGO
-        self.config['SESSION_MONGODB_DB'] = "capuchin_sessions"
+        self.config['SESSION_MONGODB_DB'] = "app_sessions"
         self.config['SESSION_MONGODB_COLLECT'] = "sessions"
         Session(self)
 
