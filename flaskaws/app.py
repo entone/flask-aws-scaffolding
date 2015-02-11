@@ -16,16 +16,15 @@ class App(Flask):
         super(App, self).__init__(__name__)
         self.config.from_object('flaskaws.config')
         logging.info("SERVER_NAME: {}".format(self.config['SERVER_NAME']))
+        self.before_request(self.init_dbs)
         try:
+            self.init_session()
             self.init_login()
             self.init_blueprints()
             self.init_pjax()
             self.init_templates()
         except Exception as e:
             logging.exception(e)
-
-        self.before_request(self.init_dbs)
-        self.before_request(self.init_session)
 
     def load_user(self, id):
         try:
@@ -52,7 +51,7 @@ class App(Flask):
         humongolus.settings(logging, g.MONGO)
 
     def init_session(self):
-        self.config['SESSION_MONGODB'] = g.MONGO
+        self.config['SESSION_MONGODB'] = db.init_mongodb()
         self.config['SESSION_MONGODB_DB'] = "app_sessions"
         self.config['SESSION_MONGODB_COLLECT'] = "sessions"
         Session(self)

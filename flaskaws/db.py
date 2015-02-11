@@ -30,7 +30,7 @@ def init_mongodb():
     mongo_connected = False
     while not mongo_connected:
         try:
-            MONGO = MongoClient(config.MONGO_HOST, config.MONGO_PORT)
+            MONGO = MongoClient(config.MONGO_HOST, config.MONGO_PORT, use_greenlets=True)
             mongo_connected = True
         except Exception as e:
             logging.info("MongoDB not connected")
