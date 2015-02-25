@@ -7,7 +7,7 @@ This Flask application comes with a few batteries included...
 * Search your Facebook Page posts within [Elasticsearch](http://www.elasticsearch.org/)
 * Query your Facebook Page analytics using [InfluxDB](http://influxdb.com/)
 * Schedule tasks and distribute processing with [RabbitMQ](http://www.rabbitmq.com/) and [Celery](http://www.celeryproject.org/)
-* Like Python? Like MongoDB? Like models? Use [Humongolus](https://github.com/entone/Humongolus) it's included
+* Like Python? Like MongoDB? Like models? Use [Humongolus](http://entone.github.io/Humongolus/) it's included
 * Make pretty graphs with [D3](http://d3js.org) and [NVD3](http://nvd3.org/)
 * Run everything in containers, and keep your host machine pristine with [Docker](https://docs.docker.com/) ;)
 * One click deploy to AWS VPC using [Terraform.io](https://terraform.io/)
