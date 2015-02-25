@@ -9,6 +9,8 @@ This Flask application comes with a few batteries included...
 * Schedule tasks and distribute processing with RabbitMQ and Celery
 * Like Python? Like MongoDB? Like models? Use [humongolus](https://github.com/entone/Humongolus) it's included
 * Make pretty graphs with [D3](http://d3js.org) and [NVD3](http://nvd3.org/)
+* Run everything in conatiners, and keep your host machine pristine with [Docker](https://docs.docker.com/) ;)
+* One click deploy to AWS VPC using [Terraform.io](https://terraform.io/)
 
 ## Installation
 
