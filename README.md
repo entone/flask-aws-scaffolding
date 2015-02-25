@@ -1,5 +1,17 @@
 # Flask AWS Scaffolding
 
+This Flask application comes with a few batteries included...
+
+* Registration and Login system (bare bones)
+* Facebook Page integration and analytics
+* Search your Facebook Page posts within [Elasticsearch](http://www.elasticsearch.org/)
+* Query your Facebook page analytics using [InfluxDB](http://influxdb.com/)
+* Schedule tasks and distribute processing with RabbitMQ and Celery
+* Like Python? Like MongoDB? Like models? Use [humongolus](https://github.com/entone/Humongolus) it's included
+* Make pretty graphs with [D3](http://d3js.org) and [NVD3](http://nvd3.org/)
+
+## Installation
+
 install [Docker](https://docs.docker.com/)
 
 install [Nginx](http://nginx.org/en/docs/install.html)
