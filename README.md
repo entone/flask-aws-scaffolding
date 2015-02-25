@@ -62,3 +62,10 @@ you may see some errors as the databases are coming up and the app is waiting fo
 you should now be able to point your browser to http://entropealabs.dev
 
 we will be creating another readme for using the included terraform configurations to deploy to a AWS VPC (Amazon Web Service | Virtual Private Cloud)
+
+For the Facebook Page management you will need to create a Website Facebook Application and provide the App ID and App secret in the fig.yml file. Change these lines.
+
+    environment:
+        SERVER_NAME: entropealabs.dev
+        FACEBOOK_APP_ID: YOURAPPID
+        FACEBOOK_APP_SECRET: YOURAPPSECRET
